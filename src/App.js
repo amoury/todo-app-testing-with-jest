@@ -11,10 +11,18 @@ function App() {
     setTodos([...todos, todo]);
   };
 
+  const markCompleted = (todoId) => {
+    setTodos(
+      [...todos].map((todo) =>
+        todo.id === todoId ? { ...todo, completed: true } : todo
+      )
+    );
+  };
+
   return (
     <div className="App">
       <AddTodo add={addNewTodo} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} markCompleted={markCompleted} />
 
       <Completed />
     </div>
