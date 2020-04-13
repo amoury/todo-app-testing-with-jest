@@ -11,6 +11,7 @@ const AddTodo = ({ add }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     add({ id: uuid(), content: inputRef.current.value });
+    inputRef.current.value = "";
   };
 
   return (
