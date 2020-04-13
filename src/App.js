@@ -19,10 +19,18 @@ function App() {
     );
   };
 
+  const deleteTodo = (todoId) => {
+    setTodos([...todos].filter((todo) => todo.id !== todoId));
+  };
+
   return (
     <div className="App">
       <AddTodo add={addNewTodo} />
-      <TodoList todos={todos} markCompleted={markCompleted} />
+      <TodoList
+        todos={todos}
+        markCompleted={markCompleted}
+        deleteTodo={deleteTodo}
+      />
 
       <Completed />
     </div>
