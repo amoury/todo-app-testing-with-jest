@@ -14,7 +14,7 @@ function App() {
   const markCompleted = (todoId) => {
     setTodos(
       [...todos].map((todo) =>
-        todo.id === todoId ? { ...todo, completed: true } : todo
+        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
       )
     );
   };

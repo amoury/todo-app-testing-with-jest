@@ -4,7 +4,6 @@ const TodoItem = ({ todo, markCompleted }) => {
   const handleComplete = (todoId) => {
     markCompleted(todoId);
   };
-  if (todo.completed) return null;
   return (
     <div className="item list-item" style={todoItemStyles}>
       <div className="content" style={{ flex: 2 }}>
