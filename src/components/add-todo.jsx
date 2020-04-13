@@ -10,7 +10,7 @@ const AddTodo = ({ add }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    add({ id: uuid(), content: inputRef.current.value });
+    add({ id: uuid(), content: inputRef.current.value, completed: false });
     inputRef.current.value = "";
   };
 

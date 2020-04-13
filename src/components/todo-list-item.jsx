@@ -1,12 +1,12 @@
 import React from "react";
 
-const TodoItem = () => {
+const TodoItem = ({ todo }) => {
   return (
     <div className="item list-item" style={todoItemStyles}>
       <div className="content" style={{ flex: 2 }}>
-        <div className="ui checked checkbox">
-          <input id="checkbox" type="checkbox" />
-          <label htmlFor="checkbox">Active</label>
+        <div className={`ui checkbox ${todo.completed && "checked"}`}>
+          <input id="checkbox" type="checkbox" checked={todo.completed} />
+          <label htmlFor="checkbox">{todo.content}</label>
         </div>
       </div>
       <div className="right floated content">
