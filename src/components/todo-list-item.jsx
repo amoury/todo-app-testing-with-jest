@@ -4,6 +4,7 @@ const TodoItem = ({ todo, markCompleted, deleteTodo }) => {
   const handleComplete = (todoId) => {
     markCompleted(todoId);
   };
+  if (!todo) return null;
   return (
     <div className="item list-item" style={todoItemStyles}>
       <div className="content" style={{ flex: 2 }}>
@@ -14,11 +15,14 @@ const TodoItem = ({ todo, markCompleted, deleteTodo }) => {
             defaultChecked={todo.completed}
             onChange={() => handleComplete(todo.id)}
           />
-          <label htmlFor={todo.id}>{todo.content}</label>
+          <label data-testid="todo-label" htmlFor={todo.id}>
+            {todo.content}
+          </label>
         </div>
       </div>
       <div className="right floated content">
         <button
+          data-testid="delete-btn"
           className="ui button icon red"
           onClick={() => deleteTodo(todo.id)}
         >
