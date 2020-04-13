@@ -1,6 +1,6 @@
 import React from "react";
 
-const TodoItem = ({ todo, markCompleted }) => {
+const TodoItem = ({ todo, markCompleted, deleteTodo }) => {
   const handleComplete = (todoId) => {
     markCompleted(todoId);
   };
@@ -18,7 +18,10 @@ const TodoItem = ({ todo, markCompleted }) => {
         </div>
       </div>
       <div className="right floated content">
-        <button className="ui button icon red">
+        <button
+          className="ui button icon red"
+          onClick={() => deleteTodo(todo.id)}
+        >
           <i className="trash icon"></i>
         </button>
       </div>
