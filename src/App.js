@@ -32,7 +32,7 @@ function App() {
         deleteTodo={deleteTodo}
       />
 
-      <Completed />
+      <Completed todos={todos} />
     </div>
   );
 }
