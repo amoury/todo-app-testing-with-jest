@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import { uuid } from "uuidv4";
 
 const AddTodo = ({ add }) => {
   const inputRef = useRef(null);
@@ -9,8 +10,7 @@ const AddTodo = ({ add }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    add({ id: 1, content: inputRef.current.value });
-    console.log({ inputRef: inputRef.current.value });
+    add({ id: uuid(), content: inputRef.current.value });
   };
 
   return (
