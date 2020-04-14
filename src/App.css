@@ -1,3 +1,18 @@
 .App {
-  text-align: center;
+  width: 50vw;
+  margin: 100px auto;
+}
+
+.list-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.ui.checked > label {
+  text-decoration: line-through;
+}
+
+.completed.ui.icon.message {
+  margin: 300px 0;
 }
