@@ -15,22 +15,16 @@ afterEach(() => {
   cleanup();
 });
 
-const { getByLabelText } = render(
-  <TodoItem
-    todo={mockedTodo}
-    markCompleted={markCompleted}
-    deleteTodo={deleteTodo}
-  />
-);
-
 test("Todo is marked completed on checkbox click", () => {
+  const { getByLabelText } = render(
+    <TodoItem todo={mockedTodo} markCompleted={markCompleted} />
+  );
   const checkbox = getByLabelText(mockedTodo.content);
   fireEvent.click(checkbox);
 
   expect(markCompleted).toHaveBeenCalledTimes(1);
   expect(markCompleted).toHaveBeenCalledWith(mockedTodo.id);
 });
-
 test("Todo item to be deleted on click of delete button", () => {
   const { getByTestId } = render(
     <TodoItem todo={mockedTodo} deleteTodo={deleteTodo} />
