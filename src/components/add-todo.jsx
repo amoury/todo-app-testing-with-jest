@@ -23,7 +23,6 @@ const AddTodo = ({ add }) => {
     >
       <div className="ui fluid action input">
         <input
-          data-testid="new-item"
           type="text"
           name="new-item"
           id="new-item"

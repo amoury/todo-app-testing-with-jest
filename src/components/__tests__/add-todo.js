@@ -1,46 +1,48 @@
+
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import AddTodo from "../add-todo";
+
+const mockedAdd = jest.fn();
 
 jest.mock("uuidv4", () => ({
   uuid: () => "1234",
 }));
 
-test("AddTodo renders without crashing", () => {
-  render(<AddTodo />);
-});
+describe('AddTodo', () => {
+  beforeEach(() => {
+    render(<AddTodo add={mockedAdd} />)
+  })
 
-test("AddTodo contains input field and is focused on load", () => {
-  const { getByTestId } = render(<AddTodo />);
-  const inputField = getByTestId("new-item");
+  afterEach(() => {
+    mockedAdd.mockClear();
+  })
 
-  expect(inputField).toHaveFocus();
-});
-
-test("Form submission should not call add method if input field is empty", () => {
-  const add = jest.fn();
-  const { getByTestId } = render(<AddTodo add={add} />);
-  const btn = getByTestId("submit-btn");
-  fireEvent.click(btn);
-
-  expect(add).not.toHaveBeenCalledTimes(1);
-});
-
-test("Form submission should go through successfully", () => {
-  const add = jest.fn();
-  const { getByTestId } = render(<AddTodo add={add} />);
-  const input = getByTestId("new-item");
-  const btn = getByTestId("submit-btn");
-
-  fireEvent.change(input, { target: { value: "grocery" } });
-  fireEvent.click(btn);
-
-  expect(add).toHaveBeenCalledTimes(1);
-  expect(add).toHaveBeenCalledWith({
-    id: "1234",
-    content: "grocery",
-    completed: false,
+  test("It contains input field and it has focus on mount", () => {
+    const inputField = screen.getByPlaceholderText("Add a new todo");
+    expect(inputField).toHaveFocus();
   });
 
-  expect(input).toHaveValue("");
+  test("Form submission should go through successfully", () => {
+    const input = screen.getByPlaceholderText("Add a new todo");
+    const btn = screen.getByText(/add/i);
+  
+    fireEvent.change(input, { target: { value: "grocery" } });
+    fireEvent.click(btn);
+  
+    expect(mockedAdd).toHaveBeenCalledTimes(1);
+    expect(mockedAdd).toHaveBeenCalledWith({
+      id: "1234",
+      content: "grocery",
+      completed: false,
+    });
+  
+    expect(input).toHaveValue("");
+});
+
+  test("Form submission should not call `add` method if input field is empty", () => {
+    const btn = screen.getByText(/add/i);
+    fireEvent.click(btn);
+    expect(mockedAdd).not.toHaveBeenCalled();
+  });
 });

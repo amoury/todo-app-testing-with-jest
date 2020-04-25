@@ -4,11 +4,13 @@ const TodoItem = ({ todo, markCompleted, deleteTodo }) => {
   const handleComplete = (todoId) => {
     markCompleted(todoId);
   };
+
   if (!todo) return null;
+
   return (
-    <div className="item list-item" style={todoItemStyles}>
+    <div data-testid="todo-list-item" className="item list-item" style={todoItemStyles}>
       <div className="content" style={{ flex: 2 }}>
-        <div className={`ui checkbox ${todo.completed && "checked"}`}>
+        <div data-testid="todo-row" className={`ui checkbox ${todo.completed ? "checked" : ''}`}>
           <input
             id={todo.id}
             type="checkbox"

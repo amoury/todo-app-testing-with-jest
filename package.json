@@ -2,19 +2,14 @@
   "name": "todo-app-testing",
   "version": "0.1.0",
   "private": true,
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ]
-  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "babel-eslint": "^10.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "babel-eslint": "^10.1.0",
+    "react-scripts": "^3.4.0",
     "uuidv4": "^6.0.7"
   },
   "scripts": {
@@ -22,6 +17,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,5 +40,8 @@
   },
   "resolutions": {
     "jest": "25.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.4"
   }
 }
